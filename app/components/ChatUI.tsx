@@ -21,6 +21,7 @@ function getErrorSuggestion(error: string): string {
     return "Check your internet connection and try again.";
   }
   return "If this problem persists, try refreshing the page or using a different model.";
+}
 
 type Role = "user" | "assistant" | "system";
 
