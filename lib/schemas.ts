@@ -1,16 +1,15 @@
 // lib/schemas.ts
 import { z } from 'zod';
 
-// This is the improved schema from your example
+// Simple message type used throughout the app
 export const messageSchema = z.object({
   role: z.enum(['user', 'assistant', 'system']),
   content: z.string(),
 });
 
-// We'll keep the request schema simple for our frontend
-// It only needs to send the list of messages
+// Payload we accept at POST /api/chat
+// Keep it minimal so it's easy to extend later
 export const chatRequestSchema = z.object({
   messages: z.array(messageSchema),
-  // optional model field so callers may request a specific model
   model: z.string().optional(),
 });
