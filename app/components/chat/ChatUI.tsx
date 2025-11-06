@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useState } from 'react';
-import { ModelType } from '@/types';
-import { useChatStorage } from '@/hooks/useChatStorage';
-import { useChatOperations } from '@/hooks/useChatOperations';
+import { ModelType } from '@/lib/types';
+import { useChatStorage } from '@/lib/hooks/useChatStorage';
+import { useChatOperations } from '@/lib/hooks/useChatOperations';
 import { ChatList } from '../chat/ChatList';
 import { MessageList } from '../chat/MessageList';
 import { ModelSelector } from '../ui/ModelSelector';

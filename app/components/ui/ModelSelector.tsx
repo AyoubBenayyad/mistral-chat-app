@@ -1,7 +1,7 @@
 "use client";
 
 import React from 'react';
-import { ModelType } from '@/types';
+import { ModelType } from '@/lib/types';
 
 interface ModelSelectorProps {
   value: ModelType;

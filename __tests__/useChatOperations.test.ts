@@ -1,5 +1,5 @@
 import { renderHook, act } from '@testing-library/react';
-import { useChatOperations } from '../hooks/useChatOperations';
+import { useChatOperations } from '../lib/hooks/useChatOperations';
 
 describe('useChatOperations', () => {
   const mockOnAddMessage = jest.fn();

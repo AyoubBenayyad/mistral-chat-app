@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
-import { Chat, ChatState, Message, ModelType } from '@/types';
-import { loadFromStorage, saveToStorage, createNewChat } from '@/utils/storage';
+import { Chat, ChatState, Message, ModelType } from '@/lib/types';
+import { loadFromStorage, saveToStorage, createNewChat } from '@/lib/utils/storage';
 
 /**
  * Custom hook for managing chat state with persistence

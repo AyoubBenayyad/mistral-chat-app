@@ -1,5 +1,5 @@
 import { useState, useRef, useCallback } from 'react';
-import { Message } from '@/types';
+import { Message } from '@/lib/types';
 
 interface UseChatOperationsProps {
   onAddMessage: (message: Message) => void;

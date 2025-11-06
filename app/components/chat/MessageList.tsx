@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Image from 'next/image';
-import { Message } from '@/types';
+import { Message } from '@/lib/types';
 
 interface MessageListProps {
   messages: Message[];

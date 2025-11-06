@@ -1,4 +1,4 @@
-import { Chat, ChatState, ModelType } from '@/types';
+import { Chat, ChatState, ModelType } from '@/lib/types';
 
 const STORAGE_KEY = 'mistral-chats-v1';
 
