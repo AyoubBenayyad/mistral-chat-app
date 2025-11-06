@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { ErrorMessage } from "@/app/components/ErrorMessage";
+import { ErrorMessage } from "@/app/components/shared/ErrorMessage";
 
 function getErrorSuggestion(error: string): string {
   if (error.includes('service_tier_capacity_exceeded')) {
