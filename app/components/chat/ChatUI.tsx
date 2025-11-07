@@ -7,11 +7,8 @@ import { useChatOperations } from '@/lib/hooks/useChatOperations';
 import { ChatList } from '../chat/ChatList';
 import { MessageList } from '../chat/MessageList';
 import { ModelSelector } from '../ui/ModelSelector';
+import { ThemeToggle } from '@/app/components/ui/ThemeToggle';
 
-/**
- * Main Chat UI component
- * Orchestrates the chat functionality and manages the UI state
- */
 export default function ChatUI() {
   const [error, setError] = useState<string | null>(null);
   const [input, setInput] = useState('');
@@ -50,7 +47,6 @@ export default function ChatUI() {
     onError: setError
   });
 
-  // Create initial chat if none exists
   React.useEffect(() => {
     if (chats.length === 0) {
       createChat('mistral-small-latest' as ModelType);
@@ -74,7 +70,7 @@ export default function ChatUI() {
   };
 
   return (
-    <div className="flex h-screen">
+    <div className="flex h-screen bg-zinc-50 dark:bg-zinc-900">
       <ChatList
         chats={chats}
         activeChat={activeChat?.id || null}
@@ -83,9 +79,9 @@ export default function ChatUI() {
       />
       
       <div className="flex-1 flex flex-col">
-        <header className="flex items-center justify-between p-4 border-b border-zinc-200">
+        <header className="flex items-center justify-between p-4 border-b border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800">
           <div className="flex items-center gap-4">
-            <h1 className="text-2xl font-semibold">
+            <h1 className="text-2xl font-semibold text-zinc-900 dark:text-zinc-100">
               {activeChat?.title || 'New Chat'}
             </h1>
             {activeChat && (
@@ -97,16 +93,17 @@ export default function ChatUI() {
             )}
           </div>
           <div className="flex items-center gap-2">
+            <ThemeToggle />
             <button
               onClick={handleNewChat}
-              className="rounded-md bg-blue-50 px-3 py-1 text-sm text-blue-700 hover:bg-blue-100"
+              className="rounded-lg bg-blue-50 dark:bg-blue-900/30 px-4 py-2 text-sm font-medium text-blue-700 dark:text-blue-300 hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors"
             >
               New Chat
             </button>
             {isStreaming && (
               <button
                 onClick={stopStreaming}
-                className="rounded-md bg-yellow-50 px-3 py-1 text-sm text-yellow-700 hover:bg-yellow-100"
+                className="rounded-lg bg-yellow-50 dark:bg-yellow-900/30 px-4 py-2 text-sm font-medium text-yellow-700 dark:text-yellow-300 hover:bg-yellow-100 dark:hover:bg-yellow-900/50 transition-colors"
               >
                 Stop
               </button>
@@ -121,9 +118,9 @@ export default function ChatUI() {
               isStreaming={isStreaming}
             />
             
-            <div className="border-t border-zinc-200 p-4">
+            <div className="border-t border-zinc-200 dark:border-zinc-700 p-4 bg-white dark:bg-zinc-800">
               {error && (
-                <div className="mb-3 flex items-center justify-between gap-3 rounded-md bg-red-50 p-3 text-sm text-red-800">
+                <div className="mb-3 flex items-center justify-between gap-3 rounded-lg bg-red-50 dark:bg-red-900/20 p-3 text-sm text-red-800 dark:text-red-200 border border-red-200 dark:border-red-800">
                   <div className="flex-1 pr-3">{error}</div>
                   <button
                     onClick={() => {
@@ -134,7 +131,7 @@ export default function ChatUI() {
                         setInput(lastUserMessage.content);
                       }
                     }}
-                    className="rounded-md bg-white px-3 py-1 text-xs text-zinc-900 border"
+                    className="rounded-md bg-white dark:bg-zinc-800 px-3 py-1 text-xs text-zinc-900 dark:text-zinc-100 border border-red-200 dark:border-red-700 hover:bg-zinc-50 dark:hover:bg-zinc-700"
                   >
                     Retry
                   </button>
@@ -145,7 +142,7 @@ export default function ChatUI() {
                 <input
                   type="text"
                   placeholder="Type your message..."
-                  className="flex-1 rounded-md border border-zinc-300 px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="flex-1 rounded-lg border border-zinc-300 dark:border-zinc-600 px-4 py-3 text-sm bg-white dark:bg-zinc-700 text-zinc-900 dark:text-zinc-100 placeholder-zinc-500 dark:placeholder-zinc-400 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent"
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   disabled={isStreaming}
@@ -153,7 +150,7 @@ export default function ChatUI() {
                 <button
                   type="submit"
                   disabled={isLoading || isStreaming || !input.trim()}
-                  className="rounded-md bg-blue-600 px-6 py-2 text-sm font-medium text-white hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center gap-2"
+                  className="rounded-lg bg-blue-600 dark:bg-blue-500 px-6 py-3 text-sm font-medium text-white hover:bg-blue-700 dark:hover:bg-blue-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center gap-2"
                 >
                   {(isLoading || isStreaming) && (
                     <svg
@@ -185,7 +182,7 @@ export default function ChatUI() {
             </div>
           </>
         ) : (
-          <div className="flex-1 flex items-center justify-center text-zinc-500">
+          <div className="flex-1 flex items-center justify-center text-zinc-500 dark:text-zinc-400 bg-white dark:bg-zinc-800">
             Select a chat or create a new one to begin
           </div>
         )}
